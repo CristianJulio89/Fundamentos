@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!--<link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    type="text/css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.standalone.min.css">
+  <link rel="stylesheet" href="../static/css/now-ui-kit.css" type="text/css">
+  <link rel="stylesheet" href="../static/css/nucleo-icons.css" type="text/css">
+  <script src="../static/js/navbar-ontop.js"></script>
+  <link rel="icon" href="">
+  <title>Social App</title>
+  <meta name="description" content="Start your development with a beautiful Bootstrap 4 UI kit. It is yours Free.">
+  <meta name="keywords"
+    content="bootstrap 4, bootstrap 4 uit kit, bootstrap 4 kit, now ui, now ui kit, creative tim, html kit, html css template, web template, bootstrap, bootstrap 4, css3 template, frontend, responsive bootstrap template, bootstrap ui kit, responsive ui kit">
+</head>
+
+<body class="" style="	box-shadow: 0px 0px 4px  #333, 0px 0px 4px  black;">
+  <nav class="navbar navbar-expand-lg bg-primary navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" title="Designed by Invision. Coded by Creative Tim and Pingendo" data-placement="bottom"
+        data-toggle="tooltip" href="#">HOME</a>
+      <div class="collapse navbar-collapse" id="navbar16">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"> <a class="nav-link" href="#"></a> </li>
+          <li class="nav-item"> <a class="nav-link" href="#">Unirme</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="#">Conócenos</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="#">Contáctanos</a> </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbardropdownMenu" href="#"data-toggle="dropdown" aria-haspopup="true" aria-expanded="flase"> Idioma </a>
+            <div class="dropdown-menu dropdown-menu-right" >
+              <a class="dropdown-item" href="#">Español</a>
+              <a class="dropdown-item" href="#">English</a>
+              <a class="dropdown-item" href="#">Portugues</a>
+            </div>
+          </li>
+        </ul>
+        <!--<a class="btn navbar-btn ml-md-2 btn-light text-dark">Contact us</a>-->
+        {% block content %}
+        {% if user.is_authenticated %}
+              <p>Autenticado</p>
+        {% else %}
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Sign in </button>
+          
+          <div class="dropdown-menu">
+            {% if message %}
+            <div> {{ message }}  </div>
+            {% endif %}
+            {% if form.errors %}
+            <p>Your username and password didn't match. Please try again.</p>
+            {% endif %}
+        
+            <form class="p-4" action="{% url 'login' %}" method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="username">Correo electrónico </label>
+                <input  name="username" type="text" class="form-control" id="username" placeholder="email@example.com">
+              </div>
+              <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input name= "password" type="password" class="form-control" id="password" placeholder="Password">
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                <label class="form-check-label" for="dropdownCheck"> Recurdame </label>
+              </div>
+              <button type="submit" value="Login" class="btn btn-primary" > Sign in</button>
+            </form>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="register">¿Eres nuevo por aquí? Regístrate!</a>
+            <a class="dropdown-item" href="#">¿Olvidaste tu contraseña?</a>   
+          </div>
+        </div>
+        {% endif %}
+        {% endblock %}
+      </div>
+    </div>
+  </nav>
+
+  <!--<nav class="navbar navbar-expand-lg bg-primary navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" title="Designed by Invision. Coded by Creative Tim and Pingendo" data-placement="bottom" data-toggle="tooltip" href="#">NOW UI KIT</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNowUIKitFree">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center justify-content-end" id="navbarNowUIKitFree">
+        <ul class="navbar-nav">
+          <li class="nav-item mx-1 align-items-center d-flex justify-content-center">
+            <a class="nav-link" href="#download">
+              <i class="now-ui-icons arrows-1_cloud-download-93 x2 mr-2"></i>&nbsp;DOWNLOAD</a>
+          </li>
+          <li class="nav-item mx-1 align-items-center d-flex justify-content-center">
+            <a class="nav-link" href="#">
+              <i class="now-ui-icons files_paper x2 mr-2"></i>COMPONENTS</a>
+          </li>
+        </ul>
+        <a class="btn btn-light text-primary" href="#pro">
+          <i class="now-ui-icons arrows-1_share-66 mr-1"></i>Upgrade to PRO</a>
+        <ul class="navbar-nav flex-row justify-content-center mt-2 mt-md-0">
+          <li class="nav-item mx-1">
+            <a class="nav-link" href="#" data-placement="bottom" data-toggle="tooltip" title="Follow us on Twitter">
+              <i class="fa fa-fw fa-twitter fa-2x"></i>
+            </a>
+          </li>
+          <li class="nav-item mx-3 mx-md-1">
+            <a class="nav-link" href="#" data-placement="bottom" data-toggle="tooltip" title="Like us on Facebook">
+              <i class="fa fa-fw fa-facebook-official fa-2x"></i>
+            </a>
+          </li>
+          <li class="nav-item ml-1">
+            <a class="nav-link" href="#" data-placement="bottom" data-toggle="tooltip" title="Follow us on Instagram">
+              <i class="fa fa-fw fa-instagram fa-2x"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>-->
+
+
+
+
+  <div class="text-center parallax cover gradient-overlay pb-5 py-5"
+    style="	background-image: url(&quot;static/img/header2-01.jpg&quot;);	position: relative;	background-position: center center;	background-size: 100%;	background-repeat: repeat;	box-shadow: 0px 0px 4px  black, 0px 0px 4px  black;">
+    <div class="container d-flex flex-column" >
+      <div class="row my-auto">
+        <div class="col-md-12 text-white pt-5">
+          <img class="mb-5" src="../static/img/logo2.png" width="300" >
+          <h1 class="mb-3 display-1"><b>Social App</b></h1>
+          <h3 class="mb-5" contenteditable="true">Porque ayudar es nuestro propósito.<br></h3>
+        </div>
+      </div>
+      <div class="row py-5 pb-0">
+        <div class="col-md-6"><a class="btn btn-lg btn-block btn-primary" href="#"><b class="w-100">COLABORAR</b></a>
+        </div>
+        <div class="col-md-6" ><a class="btn btn-block btn-lg btn-primary" href="#"><b class="w-100">NECESITO
+              AYUDA!</b></a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pt-5 py-5" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6" >
+          <h1 class="my-3"><b>¿Necesitas ayuda?</b></h1>
+          <p class="lead mb-4" >Nuestra razon de ser es ..... contamos con expertos a nivel continente que
+            pueden ayudarte a resolver tus problemas , solo dejanos saber que necesitas, tenemos ayuda en :&nbsp; sin
+            costo<br></p>
+          <div class="row"></div>
+          <div class="row">
+            <div class="col-md-12">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><i class="fa fa-cloud text-primary mr-2"></i>Sicológica</li>
+                <li class="list-group-item"><i class="fa fa-bookmark text-primary mr-2"></i>&nbsp;Espiritual</li>
+                <li class="list-group-item"><i class="fa fa-bell text-primary mr-2"></i> Social</li>
+                <li class="list-group-item" ><i class="fa fa-life-ring text-primary mr-2"></i> Técnica</li>
+                <li class="list-group-item" contenteditable="true"><i class="fa fa-paper-plane text-primary mr-2"></i>
+                  Para tomar decisiones</li>
+                <li class="list-group-item d-flex justify-content-between align-items-start active">No se en que
+                  necesito ayuda</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row"></div><img class="img-fluid d-block mx-auto" src="../static/img/icons.png" >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5 text-center" >
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto col-lg-10">
+          <h1>¿Quieres colaborar con este maravilloso proyecto?</h1>
+          <p class="mb-3 mx-auto w-75 lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris magna diam,
+            bibendum non rutrum ac, tincidunt non sem. Vivamus ac accumsan elit.&nbsp;</p>
+          <div class="row">
+            <div class="col-md-3 mt-4 px-4 col-6" > <i class="fa fa-stop-circle fa-4x mb-3 text-muted"></i>
+              <h5><b>Voluntariado</b></h5>
+              <p class="mb-3" >¿Tienes capacdades técnicas, emocionales, espirutuales, económicas u otras para
+                ayudar a alguien que lo necesita?</p>
+            </div>
+            <div class="col-md-3 mt-4 px-4 col-6" > <i
+                class="d-block fa fa-stop-circle-o fa-4x mb-3 text-muted"></i>
+              <h5> <b>Donación</b></h5>
+              <p class="mb-3">¿Puedes donar en dinero o en especie para alguien que lo necesita?</p>
+            </div>
+            <div class="col-md-3 mt-4 px-4 col-6" > <i class="d-block fa fa-circle-o fa-4x mb-3 text-muted"></i>
+              <h5> <b>Apadrinamiento</b></h5>
+              <p class="mb-3">Quieres encargarte persnalmente de alguien que lo necesita</p>
+            </div>
+            <div class="col-md-3 mt-4 px-4 col-6" > <i class="d-block fa fa-circle fa-4x mb-3 text-muted"></i>
+              <h5> <b>Tienda Solidaria</b></h5>
+              <p class="mb-3">Comprando tambien pedes ayudar</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-3"><a class="btn btn-outline-dark btn-lg" href="#">Apoyar</a></div>
+                <div class="col-md-3"><a class="btn btn-outline-dark btn-lg" href="#">Apoyar</a></div>
+                <div class="col-md-3"><a class="btn btn-outline-dark btn-lg" href="#" contenteditable="true">Apoyar</a>
+                </div>
+                <div class="col-md-3"><a class="btn btn-outline-dark btn-lg" href="#">Apoyar</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row"></div>
+    </div>
+  </div>
+  <div class="pt-5 bg-dark">
+    <div class="container">
+      <div class="row my-5 pt-5" id="download" >
+        <div class="col-12 text-center mx-auto col-md-10 col-xl-8">
+          <h3 class="mb-4">
+            <b>¿Quienes somos? </b>
+          </h3>
+          <p class="lead mb-5"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris magna diam, bibendum non
+            rutrum ac, tincidunt non sem. Vivamus ac accumsan elit. Vivamus varius nisi quis turpis vehicula, id congue
+            nisi varius. Cras eu feugiat dui. Pellentesque non nibh orci. Etiam </p>
+          <a class="btn btn-outline-light my-3 rounded btn-lg" href="https://www.creative-tim.com/" target="_blank">
+            Conóce nuestro equipo!&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="badge badge-dark mb-0">
+              coming soon! </span>
+          </a>
+        </div>
+      </div>
+      <div class="row py-5" id="pro" >
+        <div class="col-md-8 mx-auto text-center">
+          <h2 class="mb-4">¿Qué hacemos? </h2>
+          <p class="lead mb-5" > Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris magna diam,
+            bibendum non rutrum ac, tincidunt non sem. Vivamus ac accumsan elit. Vivamus varius nisi quis turpis
+            vehicula, id congue nisi varius. Cras eu feugiat dui. Pellentesque non nibh orci. Etiam</p>
+          <a class="btn btn-light mr-1 rounded btn-lg text-primary" href="https://www.creative-tim.com/contact-us"
+            target="_blank">
+            <i class="now-ui-icons arrows-1_share-66 mr-1"></i> Conóce mas!</a>
+        </div>
+      </div>
+      <div class="row py-5" id="pro" >
+        <div class="col-md-8 mx-auto text-center">
+          <h2 class="mb-4">¿Por qué lo hacemos?</h2>
+          <p class="lead mb-5" > Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris magna diam,
+            bibendum non rutrum ac, tincidunt non sem. Vivamus ac accumsan elit. Vivamus varius nisi quis turpis
+            vehicula, id congue nisi varius. Cras eu feugiat dui. Pellentesque non nibh orci. Etiam</p>
+          <a class="btn btn-light mr-1 rounded btn-lg text-primary" href="https://www.creative-tim.com/contact-us"
+            target="_blank">
+            <i class="now-ui-icons arrows-1_share-66 mr-1"></i> Conóce mas!</a>
+        </div>
+      </div>
+      <div class="row mt-4 py-5">
+        <div class="col-md-12 text-center">
+          <h3 class="mb-5 text-center">Thank you for supporting us!</h3>
+          <button class="btn btn-icon rounded btn-lg btn-light mx-1 btn-twitter" type="button" data-placement="top"
+            data-toggle="tooltip" title="Follow us">
+            <i class="fa fa-fw fa-2x fa-twitter"></i>
+          </button>
+          <button class="btn btn-icon rounded btn-lg btn-light mx-1 btn-facebook" type="button" data-placement="top"
+            data-toggle="tooltip" title="Like us">
+            <i class="fa fa-fw fa-2x fa-facebook-square"></i>
+          </button>
+          <button class="btn btn-icon rounded btn-lg btn-light mx-1 btn-linkedin" type="button" data-placement="top"
+            data-toggle="tooltip" title="Follow us">
+            <i class="fa fa-fw fa-2x fa-linkedin"></i>
+          </button>
+          <button class="btn btn-icon rounded btn-lg btn-light mx-1" type="button" data-placement="top"
+            data-toggle="tooltip" title="Star on Github">
+            <i class="fa fa-fw fa-2x fa-github text-primary"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-12 col-sm-6 text-left ">
+          <ul class="list-inline text-muted d-flex justify-content-center justify-content-md-start mb-4">
+            <li class="list-inline-item mx-2">
+              <a href="https://www.creative-tim.com/" class="text-light" target="_blank">
+                <small></small>
+              </a>
+            </li>
+            <li class="list-inline-item mx-2">
+              <a href="http://presentation.creative-tim.com/" class="text-light" target="_blank">
+                <small>ABOUT US</small>
+              </a>
+            </li>
+            <li class="list-inline-item mx-2">
+              <a href="http://blog.creative-tim.com/" class="text-light" target="_blank">
+                <small>BLOG</small>
+              </a>
+            </li>
+            <li class="list-inline-item mx-2">
+              <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md" class="text-light"
+                target="_blank">
+                <small>LICENSE</small>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-12 col-sm-6 pr-0 text-right d-flex justify-content-center justify-content-md-end">
+          <li class="list-inline-item text-light mb-4">
+            <small> © 2020, Designed by <a href="index.html" target="_blank" class="text-white">Juan Arismendy</a>. .
+            </small>
+          </li>
+        </div>
+        <div> </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5 text-center" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9 p-3">
+          <h2 class="mb-0" contenteditable="true">Quieres ser socio de esta iniciativa?</h2>
+        </div>
+        <div class="col-md-3 align-items-center d-flex justify-content-center p-3"> <a class="btn btn-primary btn-lg"
+            href="#">ünete</a> </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"></script>
+  <script src="../static/js/parallax.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+
+  <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+
+  <script>
+    $(document).ready(function () {
+      $('[data-toggle="popover"]').popover();
+      $('[data-toggle="tooltip"]').tooltip();
+      $('#datepicker-example').datepicker({
+        calendarWeeks: true,
+        autoclose: true,
+        todayHighlight: true
+      });
+    });
+  </script>
+
+</body>
+
+</html>
