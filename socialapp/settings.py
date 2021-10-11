@@ -178,3 +178,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 
+DEBUG = False
+ALLOWED_HOST = ['127.0.0.1', 'http://despliegue.pythonanywhere.com/']
+
+
